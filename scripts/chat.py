@@ -3,6 +3,7 @@ import openai
 from dotenv import load_dotenv
 from config import Config
 import token_counter
+import message_history
 
 cfg = Config()
 
@@ -114,10 +115,10 @@ def chat_with_ai(
             )
 
             # Update full message history
-            full_message_history.append(
+            message_history.append(
                 create_chat_message(
                     "user", user_input))
-            full_message_history.append(
+            message_history.append(
                 create_chat_message(
                     "assistant", assistant_reply))
 

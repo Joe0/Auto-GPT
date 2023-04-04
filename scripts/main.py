@@ -9,14 +9,14 @@ from spinner import Spinner
 import time
 import speak
 from enum import Enum, auto
-import sys
 from config import Config
 from json_parser import fix_and_parse_json
 from ai_config import AIConfig
 import traceback
 import yaml
 import argparse
-
+import message_history
+import snapshots
 
 def print_to_console(
         title,
@@ -164,6 +164,7 @@ Role:  {config.ai_role}
 Goals: {config.ai_goals}  
 Continue (y/n): """)
         if should_continue.lower() == "n":
+            mem.clear_memory()
             config = AIConfig()
 
     if not config.ai_name:         
@@ -240,6 +241,7 @@ def parse_arguments():
     parser.add_argument('--speak', action='store_true', help='Enable Speak Mode')
     parser.add_argument('--debug', action='store_true', help='Enable Debug Mode')
     parser.add_argument('--gpt3only', action='store_true', help='Enable GPT3.5 Only Mode')
+    parser.add_argument('--snapshot', type=str, default=None, required=False, help='Location to snapshot')
     args = parser.parse_args()
 
     if args.continuous:
@@ -258,6 +260,11 @@ def parse_arguments():
         print_to_console("GPT3.5 Only Mode: ", Fore.GREEN, "ENABLED")
         cfg.set_smart_llm_model(cfg.fast_llm_model)
 
+    if args.snapshot:
+        if snapshots.load_snapshot(args.snapshot) == False:
+            print_to_console("Load Snapshot: ", Fore.RED, "FAILED to snapshot")
+        else:
+            print_to_console("Load Snapshot: ", Fore.GREEN, f"SUCCESSFULLY loaded snapshot {args.snapshot}")
 
 # TODO: fill in llm values here
 
@@ -267,7 +274,6 @@ ai_name = ""
 prompt = construct_prompt()
 # print(prompt)
 # Initialize variables
-full_message_history = []
 result = None
 # Make a constant:
 user_input = "Determine which next command to use, and respond using the format specified above:"
@@ -279,7 +285,7 @@ while True:
         assistant_reply = chat.chat_with_ai(
             prompt,
             user_input,
-            full_message_history,
+            message_history.get_history(),
             mem.permanent_memory,
             cfg.fast_token_limit) # TODO: This hardcodes the model to use GPT3.5. Make this an argument
 
@@ -340,10 +346,10 @@ while True:
     # Check if there's a result from the command append it to the message
     # history
     if result is not None:
-        full_message_history.append(chat.create_chat_message("system", result))
+        message_history.append(chat.create_chat_message("system", result))
         print_to_console("SYSTEM: ", Fore.YELLOW, result)
     else:
-        full_message_history.append(
+        message_history.append(
             chat.create_chat_message(
                 "system", "Unable to execute command"))
         print_to_console("SYSTEM: ", Fore.YELLOW, "Unable to execute command")
