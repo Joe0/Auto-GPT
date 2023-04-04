@@ -4,13 +4,19 @@ permanent_memory = []
 
 def commit_memory(string):
     permanent_memory.append(string)
-    snapshots.create_snapshot()
+    result = snapshots.create_snapshot()
+    if result["memory"] is not True:
+        print("Failed to persist memory")
+        print(result.memory)
     return True
 
 def delete_memory(key):
     if key in permanent_memory:
         del permanent_memory[key]
-        snapshots.create_snapshot()
+        result = snapshots.create_snapshot()
+        if result["memory"] is not True:
+            print("Failed to persist memory")
+            print(result.memory)
         return key
     else:
         return None
@@ -18,7 +24,10 @@ def delete_memory(key):
 def overwrite_memory(key, string):
     if key in permanent_memory:
         permanent_memory[key] = string
-        snapshots.create_snapshot()
+        result = snapshots.create_snapshot()
+        if result["memory"] is not True:
+            print("Failed to persist memory")
+            print(result.memory)
         return key
     else:
         return None
