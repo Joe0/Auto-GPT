@@ -25,5 +25,4 @@ def overwrite_memory(key, string):
 
 def clear_memory():
     permanent_memory.clear()
-    snapshots.create_snapshot()
     return True

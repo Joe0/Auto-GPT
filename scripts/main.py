@@ -165,6 +165,7 @@ Goals: {config.ai_goals}
 Continue (y/n): """)
         if should_continue.lower() == "n":
             mem.clear_memory()
+            message_history.clear()
             config = AIConfig()
 
     if not config.ai_name:         

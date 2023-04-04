@@ -16,3 +16,8 @@ def get_history():
 def set_history(history):
     global message_history
     message_history = history
+
+def clear_history():
+    global message_history
+    message_history = []
+    return True
