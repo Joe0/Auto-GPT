@@ -11,6 +11,11 @@ from enum import Enum, auto
 import sys
 from config import Config
 from util import print_to_console
+from dotenv import load_dotenv
+
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 class Argument(Enum):
