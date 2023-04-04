@@ -3,6 +3,7 @@ import openai
 from dotenv import load_dotenv
 from config import Config
 import token_counter
+import message_history
 
 cfg = Config()
 
@@ -30,8 +31,7 @@ def chat_with_ai(
         user_input,
         full_message_history,
         permanent_memory,
-        token_limit,
-        debug=False):
+        token_limit):
     while True:
         try:
             """
@@ -49,7 +49,7 @@ def chat_with_ai(
             """
             model = cfg.fast_llm_model # TODO: Change model from hardcode to argument
             # Reserve 1000 tokens for the response
-            if debug:
+            if cfg.debug:
                 print(f"Token limit: {token_limit}")
             send_token_limit = token_limit - 1000
 
@@ -92,7 +92,7 @@ def chat_with_ai(
             # assert tokens_remaining >= 0, "Tokens remaining is negative. This should never happen, please submit a bug report at https://www.github.com/Torantulino/Auto-GPT"
 
             # Debug print the current context
-            if debug:
+            if cfg.debug:
                 print(f"Token limit: {token_limit}")
                 print(f"Send Token Count: {current_tokens_used}")
                 print(f"Tokens remaining for response: {tokens_remaining}")
@@ -114,10 +114,10 @@ def chat_with_ai(
             )
 
             # Update full message history
-            full_message_history.append(
+            message_history.append(
                 create_chat_message(
                     "user", user_input))
-            full_message_history.append(
+            message_history.append(
                 create_chat_message(
                     "assistant", assistant_reply))
 

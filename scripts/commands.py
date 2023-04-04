@@ -135,13 +135,13 @@ def get_hyperlinks(url):
 
 def commit_memory(string):
     _text = f"""Committing memory with string "{string}" """
-    mem.permanent_memory.append(string)
+    mem.commit_memory(string)
     return _text
 
 
 def delete_memory(key):
-    if key >= 0 and key < len(mem.permanent_memory):
-        _text = "Deleting memory with key " + str(key)
+    if mem.delete_memory(key) == key:
+        _text = f"""Deleting memory with key {key} """
         del mem.permanent_memory[key]
         print(_text)
         return _text
@@ -151,10 +151,9 @@ def delete_memory(key):
 
 
 def overwrite_memory(key, string):
-    if int(key) >= 0 and key < len(mem.permanent_memory):
+    if mem.overwrite_memory(key, string) == key:
         _text = "Overwriting memory with key " + \
             str(key) + " and string " + string
-        mem.permanent_memory[key] = string
         print(_text)
         return _text
     else:
