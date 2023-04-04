@@ -165,7 +165,7 @@ Goals: {config.ai_goals}
 Continue (y/n): """)
         if should_continue.lower() == "n":
             mem.clear_memory()
-            message_history.clear()
+            message_history.clear_history()
             config = AIConfig()
 
     if not config.ai_name:         
@@ -242,6 +242,7 @@ def parse_arguments():
     parser.add_argument('--speak', action='store_true', help='Enable Speak Mode')
     parser.add_argument('--debug', action='store_true', help='Enable Debug Mode')
     parser.add_argument('--gpt3only', action='store_true', help='Enable GPT3.5 Only Mode')
+    parser.add_argument('--enable-snapshots', action='store_true', help='Enable Snapshots')
     parser.add_argument('--snapshot', type=str, default=None, required=False, help='Location to snapshot')
     args = parser.parse_args()
 
@@ -260,6 +261,14 @@ def parse_arguments():
     if args.gpt3only:
         print_to_console("GPT3.5 Only Mode: ", Fore.GREEN, "ENABLED")
         cfg.set_smart_llm_model(cfg.fast_llm_model)
+
+    if args.debug:
+        print_to_console("Debug Mode: ", Fore.GREEN, "ENABLED")
+        cfg.set_debug_mode(True)
+
+    if args.enable_snapshots:
+        print_to_console("Snapshots: ", Fore.GREEN, "ENABLED")
+        cfg.set_snapshots_enabled(True)
 
     if args.snapshot:
         if snapshots.load_snapshot(args.snapshot) == False:

@@ -3,6 +3,9 @@ import os
 import shelve
 import message_history
 import memory
+from config import Config
+
+cfg = Config()
 
 def persist_message_history(current_unix_time):
     os.makedirs(f"outputs/snapshots/{current_unix_time}", exist_ok=True)
@@ -40,6 +43,8 @@ def load_memory(file):
         return False
     
 def create_snapshot():
+    if not cfg.snapshots_enabled:
+        return True
     current_unix_time = int(time.time())
     return persist_message_history(current_unix_time) and persist_memory(current_unix_time)
 
