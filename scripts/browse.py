@@ -1,9 +1,9 @@
-from googlesearch import search
 import requests
 from bs4 import BeautifulSoup
-from readability import Document
-import openai
+from config import Config
+from llm_utils import create_chat_completion
 
+cfg = Config()
 
 def scrape_text(url):
     response = requests.get(url)
@@ -74,64 +74,42 @@ def split_text(text, max_length=8192):
         yield "\n".join(current_chunk)
 
 
-def summarize_text(text, is_website=True):
-    if text == "":
+def create_message(chunk, question):
+    return {
+        "role": "user",
+        "content": f"\"\"\"{chunk}\"\"\" Using the above text, please answer the following question: \"{question}\" -- if the question cannot be answered using the text, please summarize the text."
+    }
+
+def summarize_text(text, question):
+    if not text:
         return "Error: No text to summarize"
 
-    print("Text length: " + str(len(text)) + " characters")
+    text_length = len(text)
+    print(f"Text length: {text_length} characters")
+
     summaries = []
     chunks = list(split_text(text))
 
     for i, chunk in enumerate(chunks):
-        print("Summarizing chunk " + str(i + 1) + " / " + str(len(chunks)))
-        if is_website:
-            messages = [
-                {
-                    "role": "user",
-                    "content": "Please summarize the following website text, do not describe the general website, but instead concisely extract the specific information this subpage contains.: " +
-                    chunk},
-            ]
-        else:
-            messages = [
-                {
-                    "role": "user",
-                    "content": "Please summarize the following text, focusing on extracting concise and specific information: " +
-                    chunk},
-            ]
+        print(f"Summarizing chunk {i + 1} / {len(chunks)}")
+        messages = [create_message(chunk, question)]
 
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+        summary = create_chat_completion(
+            model=cfg.fast_llm_model,
             messages=messages,
             max_tokens=300,
         )
-
-        summary = response.choices[0].message.content
         summaries.append(summary)
-    print("Summarized " + str(len(chunks)) + " chunks.")
+
+    print(f"Summarized {len(chunks)} chunks.")
 
     combined_summary = "\n".join(summaries)
+    messages = [create_message(combined_summary, question)]
 
-    # Summarize the combined summary
-    if is_website:
-        messages = [
-            {
-                "role": "user",
-                "content": "Please summarize the following website text, do not describe the general website, but instead concisely extract the specific information this subpage contains.: " +
-                combined_summary},
-        ]
-    else:
-        messages = [
-            {
-                "role": "user",
-                "content": "Please summarize the following text, focusing on extracting concise and specific infomation: " +
-                combined_summary},
-        ]
-
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+    final_summary = create_chat_completion(
+        model=cfg.fast_llm_model,
         messages=messages,
         max_tokens=300,
     )
 
-    final_summary = response.choices[0].message.content
     return final_summary
