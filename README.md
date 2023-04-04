@@ -20,22 +20,32 @@ Your support is greatly appreciated
  Development of this free, open-source project is made possible by all the <a href="https://github.com/Torantulino/Auto-GPT/graphs/contributors">contributors</a> and <a href="https://github.com/sponsors/Torantulino">sponsors</a>. If you'd like to sponsor this project and have your avatar or company logo appear below <a href="https://github.com/sponsors/Torantulino">click here</a>. 💖
 <p align="center">
 <p align="center">
-<a href="https://github.com/nocodeclarity"><img src="https://github.com/nocodeclarity.png" width="50px" alt="nocodeclarity" /></a>&nbsp;&nbsp;<a href="https://github.com/tjarmain"><img src="https://github.com/tjarmain.png" width="50px" alt="tjarmain" /></a>&nbsp;&nbsp;<a href="https://github.com/tekelsey"><img src="https://github.com/tekelsey.png" width="50px" alt="tekelsey" /></a>&nbsp;&nbsp;<a href="https://github.com/robinicus"><img src="https://github.com/robinicus.png" width="50px" alt="robinicus" /></a>&nbsp;&nbsp;<a href="https://github.com/digisomni"><img src="https://github.com/digisomni.png" width="50px" alt="digisomni" /></a>&nbsp;&nbsp;
+<a href="https://github.com/thepok"><img src="https://github.com/thepok.png" width="50px" alt="thepok" /></a>&nbsp;&nbsp;<a href="https://github.com/SpacingLily"><img src="https://github.com/SpacingLily.png" width="50px" alt="SpacingLily" /></a>&nbsp;&nbsp;<a href="https://github.com/m"><img src="https://github.com/m.png" width="50px" alt="m" /></a>&nbsp;&nbsp;<a href="https://github.com/zkonduit"><img src="https://github.com/zkonduit.png" width="50px" alt="zkonduit" /></a>&nbsp;&nbsp;<a href="https://github.com/maxxflyer"><img src="https://github.com/maxxflyer.png" width="50px" alt="maxxflyer" /></a>&nbsp;&nbsp;<a href="https://github.com/tekelsey"><img src="https://github.com/tekelsey.png" width="50px" alt="tekelsey" /></a>&nbsp;&nbsp;<a href="https://github.com/nocodeclarity"><img src="https://github.com/nocodeclarity.png" width="50px" alt="nocodeclarity" /></a>&nbsp;&nbsp;<a href="https://github.com/tjarmain"><img src="https://github.com/tjarmain.png" width="50px" alt="tjarmain" /></a>&nbsp;&nbsp;<a href="https://github.com/alexisneuhaus"><img src="https://github.com/alexisneuhaus.png" width="50px" alt="alexisneuhaus" /></a>&nbsp;&nbsp;<a href="https://github.com/jaumebalust"><img src="https://github.com/jaumebalust.png" width="50px" alt="jaumebalust" /></a>&nbsp;&nbsp;<a href="https://github.com/robinicus"><img src="https://github.com/robinicus.png" width="50px" alt="robinicus" /></a>&nbsp;&nbsp;<a href="https://github.com/digisomni"><img src="https://github.com/digisomni.png" width="50px" alt="digisomni" /></a>&nbsp;&nbsp;
 </p>
+
 <p align="center">
-<a href="https://github.com/alexisneuhaus"><img src="https://github.com/alexisneuhaus.png" width="30px" alt="alexisneuhaus" /></a>&nbsp;&nbsp;<a href="https://github.com/iokode"><img src="https://github.com/iokode.png" width="30px" alt="iokode" /></a>&nbsp;&nbsp;<a href="https://github.com/jaumebalust"><img src="https://github.com/jaumebalust.png" width="30px" alt="jaumebalust" /></a>&nbsp;&nbsp;
+<a href="https://github.com/alexisneuhaus"><img src="https://github.com/alexisneuhaus.png" width="30px" alt="alexisneuhaus" /></a>&nbsp;&nbsp;<a href="https://github.com/iokode"><img src="https://github.com/iokode.png" width="30px" alt="iokode" /></a>&nbsp;&nbsp;<a href="https://github.com/jaumebalust"><img src="https://github.com/jaumebalust.png" width="30px" alt="jaumebalust" /></a>&nbsp;&nbsp;<a href="https://github.com/nova-land"><img src="https://github.com/nova-land.png" width="30px" alt="nova-land" /></a>&nbsp;&nbsp;<a href="https://github.com/robinicus"><img src="https://github.com/robinicus.png" width="30px" alt="robinicus" /></a>&nbsp;&nbsp;<a href="https://github.com/Void-n-Null"><img src="https://github.com/Void-n-Null.png" width="30px" alt="Void-n-Null" /></a>&nbsp;&nbsp;<a href="https://github.com/ritesh24"><img src="https://github.com/ritesh24.png" width="30px" alt="ritesh24" /></a>&nbsp;&nbsp;<a href="https://github.com/merwanehamadi"><img src="https://github.com/merwanehamadi.png" width="30px" alt="merwanehamadi" /></a>&nbsp;&nbsp;<a href="https://github.com/raulmarindev"><img src="https://github.com/raulmarindev.png" width="30px" alt="raulmarindev" /></a>&nbsp;&nbsp;<a href="https://github.com/siduppal"><img src="https://github.com/siduppal.png" width="30px" alt="siduppal" /></a>&nbsp;&nbsp;<a href="https://github.com/goosecubedaddy"><img src="https://github.com/goosecubedaddy.png" width="30px" alt="goosecubedaddy" /></a>&nbsp;&nbsp;<a href="https://github.com/pleabargain"><img src="https://github.com/pleabargain.png" width="30px" alt="pleabargain" /></a>&nbsp;&nbsp;
 </p>
 
 
 ## Table of Contents
 
-- [Features](#-features)
-- [Requirements](#-requirements)
-- [Installation](#-installation)
-- [Usage](#-usage)
-- [Limitations](#-limitations)
-- [Disclaimer](#-disclaimer)
-- [Connect with Us on Twitter ](#-connect-with-us-on-twitter)
+- [Auto-GPT: An Autonomous GPT-4 Experiment](#auto-gpt-an-autonomous-gpt-4-experiment)
+    - [Demo (30/03/2023):](#demo-30032023)
+  - [💖 Help Fund Auto-GPT's Development](#-help-fund-auto-gpts-development)
+  - [Table of Contents](#table-of-contents)
+  - [🚀 Features](#-features)
+  - [📋 Requirements](#-requirements)
+  - [💾 Installation](#-installation)
+  - [🔧 Usage](#-usage)
+  - [🗣️ Speech Mode](#️-speech-mode)
+  - [🔍 Google API Keys Configuration](#-google-api-keys-configuration)
+    - [Setting up environment variables](#setting-up-environment-variables)
+  - [💀 Continuous Mode ⚠️](#-continuous-mode-️)
+  - [GPT3.5 ONLY Mode](#gpt35-only-mode)
+  - [⚠️ Limitations](#️-limitations)
+  - [🛡 Disclaimer](#-disclaimer)
+  - [🐦 Connect with Us on Twitter](#-connect-with-us-on-twitter)
 
 
 ## 🚀 Features
@@ -97,6 +107,35 @@ python scripts/main.py
 Use this to use TTS for Auto-GPT
 ```
 python scripts/main.py --speak
+
+```
+
+## 🔍 Google API Keys Configuration
+
+This section is optional, use the official google api if you are having issues with error 429 when running google search.
+To use the `google_official_search` command, you need to set up your Google API keys in your environment variables.
+
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/).
+2. If you don't already have an account, create one and log in.
+3. Create a new project by clicking on the "Select a Project" dropdown at the top of the page and clicking "New Project". Give it a name and click "Create".
+4. Go to the [APIs & Services Dashboard](https://console.cloud.google.com/apis/dashboard) and click "Enable APIs and Services". Search for "Custom Search API" and click on it, then click "Enable".
+5. Go to the [Credentials](https://console.cloud.google.com/apis/credentials) page and click "Create Credentials". Choose "API Key".
+6. Copy the API key and set it as an environment variable named `GOOGLE_API_KEY` on your machine. See setting up environment variables below.
+7. Go to the [Custom Search Engine](https://cse.google.com/cse/all) page and click "Add".
+8. Set up your search engine by following the prompts. You can choose to search the entire web or specific sites.
+9.  Once you've created your search engine, click on "Control Panel" and then "Basics". Copy the "Search engine ID" and set it as an environment variable named `CUSTOM_SEARCH_ENGINE_ID` on your machine. See setting up environment variables below.
+
+### Setting up environment variables
+   For Windows Users:
+```
+setx GOOGLE_API_KEY "YOUR_GOOGLE_API_KEY"
+setx CUSTOM_SEARCH_ENGINE_ID "YOUR_CUSTOM_SEARCH_ENGINE_ID"
+
+```
+For macOS and Linux users:
+```
+export GOOGLE_API_KEY="YOUR_GOOGLE_API_KEY"
+export CUSTOM_SEARCH_ENGINE_ID="YOUR_CUSTOM_SEARCH_ENGINE_ID"
 
 ```
 
