@@ -17,6 +17,7 @@ import yaml
 import argparse
 import message_history
 import snapshots
+import data_store as ds
 
 def print_to_console(
         title,
@@ -251,7 +252,8 @@ def parse_arguments():
     parser.add_argument('--debug', action='store_true', help='Enable Debug Mode')
     parser.add_argument('--gpt3only', action='store_true', help='Enable GPT3.5 Only Mode')
     parser.add_argument('--enable-snapshots', action='store_true', help='Enable Snapshots')
-    parser.add_argument('--snapshot', type=str, default=None, required=False, help='Location to snapshot')
+    parser.add_argument('--snapshot-path', type=str, default=None, required=False, help='Path for the snapshot directory')
+    parser.add_argument('--snapshot-id', type=str, default=None, required=False, help='ID of the snapshot to load')
     args = parser.parse_args()
 
     if args.continuous:
@@ -277,12 +279,22 @@ def parse_arguments():
     if args.enable_snapshots:
         print_to_console("Snapshots: ", Fore.GREEN, "ENABLED")
         cfg.set_snapshots_enabled(True)
+        ds.instance = ds.ShelfDataStore("outputs/snapshots/")
 
-    if args.snapshot:
-        if snapshots.load_snapshot(args.snapshot) == False:
-            print_to_console("Load Snapshot: ", Fore.RED, "FAILED to snapshot")
-        else:
-            print_to_console("Load Snapshot: ", Fore.GREEN, f"SUCCESSFULLY loaded snapshot {args.snapshot}")
+    if args.snapshot_path:
+        print_to_console("Snapshot Path: ", Fore.GREEN, args.snapshot_path)
+        ds.instance = ds.ShelfDataStore(args.snapshot_path)
+
+    if args.snapshot_id:
+        result = snapshots.load_snapshot(args.snapshot_id)
+        message_history = result["message_history"]
+        memory = result["memory"]
+        if message_history is not True:
+            print_to_console("Load Snapshot: ", Fore.RED, f"FAILED - {message_history}")
+        if memory is not True:
+            print_to_console("Load Snapshot: ", Fore.RED, f"FAILED - {memory}")
+        if message_history is True and memory is True:
+            print_to_console("Load Snapshot: ", Fore.GREEN, f"SUCCESSFULLY loaded {args.snapshot_id}")
 
 # TODO: fill in llm values here
 
